@@ -9,3 +9,10 @@
 2) The file grid_search.R contains the code used to optimize the parameters of xgboost model.
 
 3) The file trial_error_improve_feature_selection.R contains the codes for trial/error based optimization of the xgboost model derrived based on the grid search results.
+
+
+```
+```
+**_NOTE:_**  This is an ongoing research and the codes and documentation will be changed periodically.
+```
+```
