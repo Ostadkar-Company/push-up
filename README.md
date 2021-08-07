@@ -4,11 +4,13 @@
 
 ## Files Description
 
-1) The file Cleaning_data_extracted-r1400-02_B.csv contains the order progression data for housecleaning services.
+1) The file data/Cleaning_data_extracted-r1400-02_B.csv contains the order progression data for housecleaning services.
 
-2) The file grid_search.R contains the code used to optimize the parameters of xgboost model.
+2) The file src/grid_search.R contains the code used to optimize the parameters of xgboost model.
 
-3) The file trial_error_improve_feature_selection.R contains the codes for trial/error based optimization of the xgboost model derrived based on the grid search results.
+3) The file src/trial_error_improve_feature_selection.R contains the codes for trial/error based optimization of the xgboost model derrived based on the grid search results.
+
+4) The file data/feature_selection_log.txt contains the log of feature selection algorithm.
 
 
 ```
