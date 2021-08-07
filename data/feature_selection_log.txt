@@ -1,0 +1,107 @@
+
+get_optimal_features <- function(in_features){
++   cur_trmse <- get_trmse(in_features)
++   
++   print('current model has these features:')
++   print(in_features)
++   print('-----')
++   #print('assessing performance dropiing this feature:')
++   print('with trmse: ')
++   print('-----')
++   print(cur_trmse)
++   min_trmse = cur_trmse
++   feature_to_drop = '-1'
++   for(cur_feature in in_features){
++     new_trmse = get_trmse(setdiff(in_features, cur_feature))
++     print(paste0('trmse when dropping ', cur_feature, ' :'))
++     print(new_trmse)
++     if(min_trmse>=new_trmse){
++       min_trmse = new_trmse
++       feature_to_drop = cur_feature
++     }
++     
++   }
++   
++   if(feature_to_drop!='-1'){
++     print('-----')
++     print(paste0("dropping ", cur_feature))
++     print('-----')
++     return(get_optimal_features(setdiff(in_features, cur_feature)))
++   }
++   if(feature_to_drop=='-1'){
++     print('found optimal feature set')
++     return(in_features)
++   }
++   
++   
++ }
+set.seed(1) 
+get_optimal_features(setdiff(colnames(input_data), 'label_wn_quote'))
+
+###########output log##############
+[1] "current model has these features:"
+ [1] "is_delivery_at_holiday"     "is_created_at_holiday"      "duration"                   "gender"                    
+ [5] "area_cleaning"              "day_of_week_delivery"       "day_of_week_created"        "total_cost"                
+ [9] "all_offers"                 "corporate_offers"           "individual_offers"          "offers_busy"               
+[13] "district"                   "past_day_all_orders"        "past_day_wq_1h"             "past_day_wq_2h"            
+[17] "past_day_wq_3h"             "cost_to_area"               "cost_times_area"            "duration_to_area"          
+[21] "duration_times_area"        "indiv_offers_to_all_offers" "corp_offers_to_all_offers"  "busy_offers_to_all_offers" 
+[1] "-----"
+[1] "with trmse: "
+[1] "-----"
+[1] 0.0171542
+[1] "trmse when dropping is_delivery_at_holiday :"
+[1] 0.0177694
+[1] "trmse when dropping is_created_at_holiday :"
+[1] 0.0180652
+[1] "trmse when dropping duration :"
+[1] 0.0175622
+[1] "trmse when dropping gender :"
+[1] 0.0188156
+[1] "trmse when dropping area_cleaning :"
+[1] 0.0177896
+[1] "trmse when dropping day_of_week_delivery :"
+[1] 0.0174124
+[1] "trmse when dropping day_of_week_created :"
+[1] 0.0174856
+[1] "trmse when dropping total_cost :"
+[1] 0.0187366
+[1] "trmse when dropping all_offers :"
+[1] 0.018384
+[1] "trmse when dropping corporate_offers :"
+[1] 0.0179852
+[1] "trmse when dropping individual_offers :"
+[1] 0.0180552
+[1] "trmse when dropping offers_busy :"
+[1] 0.01723
+[1] "trmse when dropping district :"
+[1] 0.0177014
+[1] "trmse when dropping past_day_all_orders :"
+[1] 0.018876
+[1] "trmse when dropping past_day_wq_1h :"
+[1] 0.0179734
+[1] "trmse when dropping past_day_wq_2h :"
+[1] 0.0177026
+[1] "trmse when dropping past_day_wq_3h :"
+[1] 0.0180406
+[1] "trmse when dropping cost_to_area :"
+[1] 0.0176808
+[1] "trmse when dropping cost_times_area :"
+[1] 0.0193768
+[1] "trmse when dropping duration_to_area :"
+[1] 0.0177814
+[1] "trmse when dropping duration_times_area :"
+[1] 0.0183148
+[1] "trmse when dropping indiv_offers_to_all_offers :"
+[1] 0.0178418
+[1] "trmse when dropping corp_offers_to_all_offers :"
+[1] 0.0175264
+[1] "trmse when dropping busy_offers_to_all_offers :"
+[1] 0.017736
+[1] "found optimal feature set"
+ [1] "is_delivery_at_holiday"     "is_created_at_holiday"      "duration"                   "gender"                    
+ [5] "area_cleaning"              "day_of_week_delivery"       "day_of_week_created"        "total_cost"                
+ [9] "all_offers"                 "corporate_offers"           "individual_offers"          "offers_busy"               
+[13] "district"                   "past_day_all_orders"        "past_day_wq_1h"             "past_day_wq_2h"            
+[17] "past_day_wq_3h"             "cost_to_area"               "cost_times_area"            "duration_to_area"          
+[21] "duration_times_area"        "indiv_offers_to_all_offers" "corp_offers_to_all_offers"  "busy_offers_to_all_offers" 
