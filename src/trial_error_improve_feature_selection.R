@@ -10,8 +10,6 @@ library(chron)
 
 setwd("~/myProjects/210601_ostadkar_r1400_2/")
 
-#mydata <-
-#  read.csv("Cleaning_data_extracted-r1400-02.csv")
 mydata <-
   read.csv("Cleaning_data_extracted-r1400-02_B.csv")
 
