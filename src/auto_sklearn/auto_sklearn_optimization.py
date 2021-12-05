@@ -19,28 +19,52 @@ print(y)
 
 
 mydata = pd.read_csv('/home/abbas/myProjects/211128_ostadkar_fullfillment/push-up/data/Cleaning_data_extracted-r1400-02_cleaned.csv')
-#print(mydata[['is_delivery_at_holiday',  'is_created_at_holiday']])
 
-#print(mydata)
-#print(mydata.dtypes)
-#print(mydata.district.unique())
+
 X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(mydata.drop('label_wn_quote', axis=1, inplace=False), 
     mydata[['label_wn_quote']], train_size=0.75, test_size=0.25, random_state=42)
 
-X_train = X_train.to_numpy()
+#X_train = X_train.to_numpy()
 y_train = y_train.to_numpy().ravel()
 
-X_test = X_test.to_numpy()
+#X_test = X_test.to_numpy()
 y_test = y_test.to_numpy().ravel()
 
 
-help(autosklearn.classification.AutoSklearnClassifier)
-"""
-tpot = TPOTClassifier(generations=5, population_size=50, verbosity=2, random_state=42,\
-    n_jobs= -1, use_dask = True, \
-    periodic_checkpoint_folder = '/home/abbas/myProjects/211128_ostadkar_fullfillment')
-tpot.fit(X_train.to_numpy(), y_train.to_numpy().ravel())
+feat_type = ['Categorical', 'Categorical', 'Numerical', 'Categorical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Categorical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical']
+dataset_name = 'ostadkar_cleaning_fulfillment'
+time_left_for_this_task=60*60*24
+per_run_time_limit=60*20
+initial_configurations_via_metalearning = None
+max_models_on_disc = None
+seed = 1367
+memory_limit = 14*1000
+resampling_strategy = 'cv'
+resampling_strategy_arguments = {'folds': 5}
+tmp_folder='/tmp/autosklearn/'
+output_folder = 'autosklearn_out'
+delete_output_folder_after_terminate = False
+n_jobs = -1
 
-tpot.export('tpot_iris_pipeline.py')
-print(tpot.score(X_test.to_numpy(), y_test.to_numpy().ravel()))
-"""
+
+
+
+#help(autosklearn.classification.AutoSklearnClassifier)
+
+automl = autosklearn.classification.AutoSklearnClassifier(
+    feat_type = feat_type,
+    dataset_name = dataset_name,
+    time_left_for_this_task = time_left_for_this_task,
+    per_run_time_limit = per_run_time_limit,
+    initial_configurations_via_metalearning = initial_configurations_via_metalearning,
+    max_models_on_disc = max_models_on_disc,
+    seed = seed,
+    memory_limit = memory_limit,
+    resampling_strategy = resampling_strategy,
+    resampling_strategy_arguments = resampling_strategy_arguments,
+    tmp_folder = tmp_folder,
+    output_folder = output_folder,
+    delete_output_folder_after_terminate = delete_output_folder_after_terminate,
+    n_jobs = n_jobs
+)
+automl.fit(X_train, y_train)
