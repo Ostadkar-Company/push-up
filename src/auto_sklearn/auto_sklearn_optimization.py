@@ -24,10 +24,10 @@ mydata = pd.read_csv('/home/abbas/myProjects/211128_ostadkar_fullfillment/push-u
 X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(mydata.drop('label_wn_quote', axis=1, inplace=False), 
     mydata[['label_wn_quote']], train_size=0.75, test_size=0.25, random_state=42)
 
-#X_train = X_train.to_numpy()
+X_train = X_train.to_numpy()
 y_train = y_train.to_numpy().ravel()
 
-#X_test = X_test.to_numpy()
+X_test = X_test.to_numpy()
 y_test = y_test.to_numpy().ravel()
 
 
@@ -41,10 +41,11 @@ seed = 1367
 memory_limit = 14*1000
 resampling_strategy = 'cv'
 resampling_strategy_arguments = {'folds': 5}
-tmp_folder='/tmp/autosklearn/'
-output_folder = 'autosklearn_out'
-delete_output_folder_after_terminate = False
-n_jobs = -1
+#tmp_folder='/tmp/autosklearn/'
+#output_folder = 'autosklearn_out'
+delete_output_folder_after_terminate = True
+delete_tmp_folder_after_terminate = True
+#n_jobs = -1
 
 
 
@@ -52,8 +53,6 @@ n_jobs = -1
 #help(autosklearn.classification.AutoSklearnClassifier)
 
 automl = autosklearn.classification.AutoSklearnClassifier(
-    feat_type = feat_type,
-    dataset_name = dataset_name,
     time_left_for_this_task = time_left_for_this_task,
     per_run_time_limit = per_run_time_limit,
     initial_configurations_via_metalearning = initial_configurations_via_metalearning,
@@ -62,9 +61,12 @@ automl = autosklearn.classification.AutoSklearnClassifier(
     memory_limit = memory_limit,
     resampling_strategy = resampling_strategy,
     resampling_strategy_arguments = resampling_strategy_arguments,
-    tmp_folder = tmp_folder,
-    output_folder = output_folder,
-    delete_output_folder_after_terminate = delete_output_folder_after_terminate,
-    n_jobs = n_jobs
+    #tmp_folder = tmp_folder,
+    #output_folder = output_folder,
+    delete_tmp_folder_after_terminate = delete_tmp_folder_after_terminate,
+    delete_output_folder_after_terminate = delete_output_folder_after_terminate
+    #n_jobs = n_jobs
 )
-automl.fit(X_train, y_train)
+automl.fit(X_train, y_train,
+    feat_type = feat_type,
+    dataset_name = dataset_name)
