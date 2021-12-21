@@ -27,16 +27,16 @@ if __name__ == "__main__":
 
 	feat_type = ['Categorical', 'Categorical', 'Numerical', 'Categorical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Categorical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical', 'Numerical']
 	dataset_name = 'ostadkar_cleaning_fulfillment'
-	time_left_for_this_task=60*60*24
-	per_run_time_limit=60*5
+	time_left_for_this_task= int(60*60*0.5)
+	per_run_time_limit=60*15
 	initial_configurations_via_metalearning = None
 	max_models_on_disc = 80
 	seed = 1367
 	memory_limit = 13*1000
 	resampling_strategy = 'cv'
 	resampling_strategy_arguments = {'folds': 5}
-	tmp_folder='/home/abbas/myProjects/211128_ostadkar_fullfillment/push-up/src/auto_sklearn/out2/tmp2'
-	output_directory = '/home/abbas/myProjects/211128_ostadkar_fullfillment/push-up/src/auto_sklearn/out2'
+	tmp_folder='/home/abbas/myProjects/211128_ostadkar_fullfillment/push-up/src/auto_sklearn/out3/tmp2'
+	output_directory = '/home/abbas/myProjects/211128_ostadkar_fullfillment/push-up/src/auto_sklearn/out3'
 	delete_output_folder_after_terminate = False
 	delete_tmp_folder_after_terminate = False
 	n_jobs = -1
@@ -63,12 +63,14 @@ if __name__ == "__main__":
 	automl.fit(X_train, y_train,
 		feat_type = feat_type,
 		dataset_name = dataset_name)
-	profiler_data = PipelineProfiler.import_autosklearn(automl)
-	PipelineProfiler.plot_pipeline_matrix(profiler_data)
-	#    with open('/home/abbas/disppage.htm','wb') as f:   # Use some reasonable temp name
-	#        f.write(PipelineProfiler.plot_pipeline_matrix(profiler_data).html.encode("UTF-8"))
+	#profiler_data = PipelineProfiler.import_autosklearn(automl)
+	#PipelineProfiler.plot_pipeline_matrix(profiler_data)
+    #with open('/home/abbas/disppage.htm','wb') as f:   # Use some reasonable temp name
+    #    f.write(PipelineProfiler.plot_pipeline_matrix(profiler_data).html.encode("UTF-8"))
 	
-	with open('/home/abbas/myProjects/211128_ostadkar_fullfillment/push-up/src/auto_sklearn/automl-classifier.pkl', 'wb') as f:
+	
+
+	with open('/home/abbas/myProjects/211128_ostadkar_fullfillment/push-up/src/auto_sklearn/automl-classifier3.pkl', 'wb') as f:
 		pickle.dump(automl, f)    
     # load model
     #with open('iris-classifier.pkl', 'rb') as f:
@@ -102,3 +104,30 @@ plt.tight_layout()
 plt.show()
 
 plt.savefig('books_read.png')
+
+
+#######################
+from autosklearn.experimental.askl2 import AutoSklearn2Classifier
+
+automl = AutoSklearn2Classifier(
+		n_jobs = n_jobs,
+		time_left_for_this_task = time_left_for_this_task,
+		per_run_time_limit = per_run_time_limit,
+		#initial_configurations_via_metalearning = initial_configurations_via_metalearning,
+		max_models_on_disc = max_models_on_disc,
+		seed = seed,
+		memory_limit = memory_limit,
+		#resampling_strategy = resampling_strategy,
+		#resampling_strategy_arguments = resampling_strategy_arguments,
+		tmp_folder = tmp_folder,
+		#,
+		delete_tmp_folder_after_terminate = delete_tmp_folder_after_terminate,
+		delete_output_folder_after_terminate = delete_output_folder_after_terminate
+
+	)
+
+tmp_folder='/home/abbas/myProjects/211128_ostadkar_fullfillment/push-up/src/auto_sklearn/out4/tmp2'
+
+automl.fit(X_train, y_train,
+           feat_type = feat_type,
+           dataset_name = dataset_name)
