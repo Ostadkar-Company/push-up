@@ -1,0 +1,78 @@
+Data description
+
+label_wn_quote: If one, it means there has been organic progression for the order from needQuote state to withQuote state. If zero, it means either there was no progressoin, or the progression was mediated through Ostadkar operator phone call. 
+
+
+The rest of columns are feautres used to predict the label_wn_quote. 
+
+
+is_delivery_at_holiday
+Whether the service is requested to be delivered on a holiday
+
+
+is_created_at_holiday
+Whether the order is created on a holiday
+
+
+duration
+The time it takes to clean the place (estimate by the customer)
+
+
+gender
+The gender of the service provider (selected by the customer)
+
+
+area_cleaning
+The area of the house that needs cleaning 
+
+
+day_of_week_delivery
+On which day of the week the service should be delivered
+
+
+day_of_week_created
+On which day of the week the order is created
+
+
+total_cost
+The final cost of the order, set by the provider
+
+
+all_offers
+Number of offers sent to service providers for the order
+
+
+corporate_offers
+Number of offers sent to corporate service providers for the order
+
+
+individual_offers
+Number of offers sent to individual service providers for the order
+
+
+offers_busy
+Number of offers whose recipient provider already had a scheduled job at the time of the order delivery
+
+
+district
+Tehran district number where the order should be delivered
+
+
+past_day_all_orders
+Total number of orders in the day before the order is created
+
+
+past_day_wq_1h
+Number of orders in the past day that received a quote within one hour
+
+
+past_day_wq_2h
+Number of orders in the past day that received a quote within two hours
+
+
+past_day_wq_3h
+Number of orders in the past day that received a quote within three hours
+
+
+
+
