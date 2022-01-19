@@ -23,11 +23,11 @@ The gender of the service provider (selected by the customer), 0 -> male, 1 -> f
 
 
 area_cleaning
-The area of the house that needs cleaning 
+The area of the house that needs cleaning, binned into 8 bins (1-8). -1 value indicates that no value was selected by the users.
 
 
 day_of_week_delivery
-On which day of the week the service should be delivered
+On which day of the week the service should be delivered, 0 -> Saturday
 
 
 day_of_week_created
