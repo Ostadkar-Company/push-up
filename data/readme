@@ -27,15 +27,15 @@ The area of the house that needs cleaning, binned into 8 bins (1-8). -1 value in
 
 
 day_of_week_delivery
-On which day of the week the service should be delivered, 0 -> Saturday
+On which day of the week the service should be delivered 0-6, 0 -> Saturday
 
 
 day_of_week_created
-On which day of the week the order is created
+On which day of the week the order is created 0-6, 0 -> Saturday
 
 
 total_cost
-The final cost of the order, set by the provider
+The final cost (Iranian Toman, 1USD ~ 25k Toman) of the order, set by the provider 
 
 
 all_offers
