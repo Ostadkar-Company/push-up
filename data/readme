@@ -19,7 +19,7 @@ The time it takes to clean the place (estimate by the customer)
 
 
 gender
-The gender of the service provider (selected by the customer)
+The gender of the service provider (selected by the customer), 0 -> male, 1 -> female, 2 -> no preference
 
 
 area_cleaning
